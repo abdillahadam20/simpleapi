@@ -60,4 +60,10 @@ public class BensinController {
         return "Produk bensin" + perusahaan + " " + nama + " berhasil dihapus";
     }
 
+    @DeleteMapping("/deleteByNama-Perusahaan")
+    public String deleteBensin(@RequestParam(value = "id") Long idBensin, @RequestParam(value = "nama") String nama, @RequestParam(value = "perusahaan") String perusahaan) {
+        bensinRepo.deleteById(idBensin);
+        return "Produk bensin" + perusahaan + nama + " berhasil dihapus";
+    }
+
 }
