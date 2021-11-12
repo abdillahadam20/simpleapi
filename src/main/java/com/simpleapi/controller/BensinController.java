@@ -4,6 +4,8 @@ import com.simpleapi.model.Bensin;
 import com.simpleapi.repository.BensinRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.transaction.Transactional;
 import java.util.List;
 
 @RestController
@@ -44,16 +46,18 @@ public class BensinController {
     public List<Bensin> findByNamaAndPerusahaan(@RequestParam(value = "nama") String nama, @RequestParam(value = "perusahaan") String perusahaan) {
         return bensinRepo.findByNamaAndPerusahaan(nama, perusahaan);
     }
-    
+
     @PostMapping("/update")
     public String updateBensin(@RequestBody Bensin bensin) {
         bensinRepo.save(bensin);
         return "Data bensin berhasil diubah";
     }
 
-//    @DeleteMapping("/deleteByNama-Perusahaan")
-//    public String deleteBensin(@RequestParam(value = "nama") String nama, @RequestParam(value = "perusahaan") String perusahaan) {
-//        bensinRepo.deleteBensin(nama, perusahaan);
-//        return "Produk bensin" +  perusahaan + nama +" berhasil dihapus";
+    @Transactional
+    @DeleteMapping("/deleteByNama-Perusahaan")
+    public String deleteBensin(@RequestParam(value = "nama") String nama, @RequestParam(value = "perusahaan") String perusahaan) {
+        bensinRepo.deleteBensin(nama, perusahaan);
+        return "Produk bensin" + perusahaan + nama + " berhasil dihapus";
     }
+
 }
