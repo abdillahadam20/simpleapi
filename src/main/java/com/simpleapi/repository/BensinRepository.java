@@ -13,5 +13,5 @@ public interface BensinRepository extends JpaRepository<Bensin, Long> {
     List<Bensin> findByPerusahaan(String perusahaan);
     List<Bensin> findByOktan(int oktan);
     List<Bensin> findByNamaAndPerusahaan(String nama, String perusahaan);
-    void deleteBensin(String nama, String perusahaan);
+    List<Bensin> deleteByNamaAndPerusahaan(String nama, String perusahaan);
 }

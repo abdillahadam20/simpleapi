@@ -56,8 +56,8 @@ public class BensinController {
     @Transactional
     @DeleteMapping("/deleteByNama-Perusahaan")
     public String deleteBensin(@RequestParam(value = "nama") String nama, @RequestParam(value = "perusahaan") String perusahaan) {
-        bensinRepo.deleteBensin(nama, perusahaan);
-        return "Produk bensin" + perusahaan + nama + " berhasil dihapus";
+        bensinRepo.deleteByNamaAndPerusahaan(nama, perusahaan);
+        return "Produk bensin" + perusahaan + " " + nama + " berhasil dihapus";
     }
 
 }
